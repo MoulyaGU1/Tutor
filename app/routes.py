@@ -580,7 +580,12 @@ def generate_notes_api():
         if not ai_result.get('success'):
             return jsonify({"error": ai_result.get('error', 'AI returned error.')}), 500
         
-        markdown_content = ai_result['content_markdown']
+        markdown_content = ai_result.get("content_markdown")
+        if not markdown_content or not isinstance(markdown_content, str):
+            current_app.logger.error("Invalid markdown content from AI")
+            return jsonify({
+        "error": "AI failed to generate valid notes."
+    }), 500
         
         # 2. Generate and Save the Document 
         file_path_relative = document_generator.create_and_save_document(

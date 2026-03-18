@@ -56,5 +56,6 @@ Flask-Migrate
 python-dotenv
 python-docx
 yt-dlp
-
+flask
+gunicorn
 # plus any other libraries your app uses
