@@ -25,4 +25,4 @@ def create_app():
         from . import routes
         app.register_blueprint(routes.main)
 
-    return app
+    return app   # ✅ ADD THIS LINE
